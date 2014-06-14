@@ -1,16 +1,18 @@
 JSPromise
 =========
   
-  /*package.json*/
-  {
-    "dependencies": {
-      "JSPromise": "git+https://github.com/rdesoky/JSPromise.git"
-    }
+package.json
+``` Javascript
+{
+  "dependencies": {
+    "JSPromise": "git+https://github.com/rdesoky/JSPromise.git"
   }
+}
+```
 
 Sample usage
 ---------
-
+``` Javascript
   var JSPromise = require("JSPromise");
 
   function myTimeout(ms){
@@ -25,3 +27,4 @@ Sample usage
     console.log("Done!");
   });
 
+```
