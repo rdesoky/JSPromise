@@ -1,0 +1,18 @@
+{
+  "name": "JSPromise",
+  "version": "0.0.0",
+  "description": "Promise class for javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rdesoky/JSPromise.git"
+  },
+  "author": "Ramy Eldesoky",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/rdesoky/JSPromise/issues"
+  }
+}
