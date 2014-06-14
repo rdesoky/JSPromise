@@ -2,6 +2,8 @@ JSPromise
 =========
   
 package.json
+------------
+
 ``` Javascript
 {
   "dependencies": {
@@ -11,7 +13,7 @@ package.json
 ```
 
 Sample usage
----------
+------------
 ``` Javascript
   var JSPromise = require("JSPromise");
 
