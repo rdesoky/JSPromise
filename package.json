@@ -1,5 +1,5 @@
 {
-  "name": "JSPromise",
+  "name": "js-promise",
   "version": "0.0.0",
   "description": "Promise class for javascript",
   "main": "index.js",
