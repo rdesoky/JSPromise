@@ -7,7 +7,7 @@ package.json
 ``` Javascript
 {
   "dependencies": {
-    "JSPromise": "git+https://github.com/rdesoky/JSPromise.git"
+    "js-promise": "*"
   }
 }
 ```
@@ -15,7 +15,7 @@ package.json
 Sample usage
 ------------
 ``` Javascript
-  var JSPromise = require("JSPromise");
+  var JSPromise = require("js-promise");
 
   function myTimeout(ms){
     return new JSPromise(function(onSuccess, onError){
