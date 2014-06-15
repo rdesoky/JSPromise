@@ -95,4 +95,10 @@ CPromise.as = function(val){
     return (new CPromise()).fulfill(val);
 };
 
+CPromise.timeout = function(ms){
+    return new CPromise(function(onSuccess){
+        setTimeout(onSuccess,ms);
+    });
+};
+
 module.exports = CPromise;
