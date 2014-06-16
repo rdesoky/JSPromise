@@ -5,17 +5,23 @@
 var JSPromise = require("..");//default to index.js
 
 function myTimeout(ms){
-    return new JSPromise(function(onSuccess){
-        setTimeout(onSuccess, ms);
+    return new JSPromise(function(onSuccess, onError){
+        setTimeout(function(){onSuccess(ms);}, ms);
     });
 }
 
-console.log("Testing JSPromise...");
+console.log("Waiting ... ");
 
-myTimeout(3000).then(function(){
-    console.log("Test Passed!");
-    console.log("Testing chaining JSPromise.timeout(3000) ...");
-    return JSPromise.timeout(3000);
-}).done(function(){
-    console.log("Test Passed!");
-});
+myTimeout(3000)
+    .then(function(delay){
+        console.log("Done " + delay + " ms!");
+        return myTimeout(2000);
+    })
+    .then(function(delay){
+        console.log("Done " + delay + " ms!");
+        return myTimeout(1000);
+    })
+    .done(function(delay){
+        console.log("Done " + delay + " ms!");
+        console.log("Test Passed!");
+    });
