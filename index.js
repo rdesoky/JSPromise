@@ -9,7 +9,6 @@ function CPromise( init ) {
         failed: 2,
         cancelled: 3
     };
-
     var noFunc = function(){
         console.log("Missing promise callback function");
     };
@@ -88,11 +87,30 @@ function CPromise( init ) {
     for (var k in inst) {
         this[k] = inst[k];
     }
-
 }
 
 CPromise.as = function(val){
     return (new CPromise()).fulfill(val);
+};
+
+CPromise.join = function(list){
+    var ret = new CPromise();
+    var doneCount = 0;
+    var doneHandler = function(){
+        if(++doneCount >= list.length){
+            ret.fulfill();
+        }
+    };
+    list.forEach(function(pr){
+        pr.done(doneHandler);
+    });
+    return ret;
+};
+
+CPromise.timeout = function(ms){
+    return new CPromise(function(onSuccess){
+        setTimeout(onSuccess,ms);
+    });
 };
 
 module.exports = CPromise;

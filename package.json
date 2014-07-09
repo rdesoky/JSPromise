@@ -1,10 +1,11 @@
 {
-  "name": "JSPromise",
-  "version": "0.0.0",
+  "name": "js-promise",
+  "version": "0.0.5",
   "description": "Promise class for javascript",
+  "keywords": ["promise", "async", "callback", "chaining", "then", "join"],
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test/index.js"
   },
   "repository": {
     "type": "git",
