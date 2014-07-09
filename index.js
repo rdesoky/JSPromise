@@ -36,7 +36,7 @@ function CPromise( init ) {
             // doesn't return a new promise
         },
         _notifyListeners: function () {// notify onSuccess callbacks if promise is fulfilled
-            if( (this._value !== undefined) && (this._value.constructor === CPromise) ){
+            if( (this._value !== undefined) && (this._value !== null) && (this._value.constructor === CPromise) ){
                 return;//wait for new promise to be fulfilled
             }
 
@@ -70,7 +70,7 @@ function CPromise( init ) {
             return this;
         },
         fulfill: function (val) {
-            if( (val !== undefined) && val.constructor === CPromise) {
+            if( (val !== undefined) && (val !== undefined) && (val.constructor === CPromise) ) {
                 //if value is a promise, wait for the fulfillment
                 val.done(this.fulfill.bind(this), this.reject.bind(this));
                 return this;
