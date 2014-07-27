@@ -102,7 +102,7 @@ CPromise.join = function(list){
         }
     };
     list.forEach(function(pr){
-        pr.done(doneHandler);
+        pr.done(doneHandler, doneHandler);
     });
     return ret;
 };
