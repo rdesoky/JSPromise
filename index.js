@@ -81,12 +81,13 @@ function CPromise( init ) {
         }
     };
 
-    ( init && init(inst.fulfill.bind(this),inst.reject.bind(this)) );
-
     // extend this object
     for (var k in inst) {
         this[k] = inst[k];
     }
+
+    ( init && init(inst.fulfill.bind(this),inst.reject.bind(this)) );
+
 }
 
 CPromise.as = function(val){
