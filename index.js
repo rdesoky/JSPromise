@@ -9,8 +9,11 @@ function CPromise( init ) {
         failed: 2,
         cancelled: 3
     };
-    var noFunc = function(){
-        console.log("Missing promise callback function");
+    var noSuccessHandler = function(result){
+        console.error( "Missing Promise Success Handler." + ( (result !== undefined ) ? " result=" + JSON.stringify(result) : "" ) );
+    };
+    var noErrorHandler = function(err){
+        console.error( "Missing Promise Error Handler." + ( (err !== undefined ) ? " error=" + JSON.stringify(err) : "" ) );
     };
     var inst = {
         _callbacklist: [],
@@ -19,8 +22,8 @@ function CPromise( init ) {
         then: function (onSuccess, onFailure) {
             var thenPromise = new CPromise();//then of
             this._callbacklist.push({
-                onSuccess: onSuccess||noFunc,
-                onFailure: onFailure||noFunc,
+                onSuccess: onSuccess||noSuccessHandler,
+                onFailure: onFailure||noErrorHandler,
                 thenPromise: thenPromise
             });
             this._notifyListeners();
@@ -28,8 +31,8 @@ function CPromise( init ) {
         },
         done: function (onSuccess, onFailure) {
             this._callbacklist.push({
-                onSuccess: onSuccess||noFunc,
-                onFailure: onFailure||noFunc
+                onSuccess: onSuccess||noSuccessHandler,
+                onFailure: onFailure||noErrorHandler
             });
             this._notifyListeners();
             // doesn't return a new promise
@@ -111,6 +114,12 @@ CPromise.join = function(list){
 CPromise.timeout = function(ms){
     return new CPromise(function(onSuccess){
         setTimeout(onSuccess,ms);
+    });
+};
+
+CPromise.error = function(err){
+    return new CPromise(function(onSuccess,onError){
+        onError(err);
     });
 };
 
