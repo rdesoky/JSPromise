@@ -123,4 +123,29 @@ CPromise.error = function(err){
     });
 };
 
+CPromise.series = function(fncList, options){
+    var ret = new CPromise();
+    var ret_vals = {success:{},errors:{}};
+
+    (function runProcess(ndx, options){
+        if(ndx>=fncList.length){
+            ret.fulfill(ret_vals);
+            return;
+        }
+        var process = fncList[ndx];
+        process(options).done(
+            function(results){
+                ret_vals.success[ndx] = results;
+                runProcess(ndx+1,results);
+            },
+            function(err){
+                ret_vals.errors[ndx] = err;
+                ret.reject(ret_vals);
+            }
+        )
+    })(0,options);
+
+    return ret;
+};
+
 module.exports = CPromise;

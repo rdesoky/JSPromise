@@ -1,6 +1,6 @@
 {
   "name": "js-promise",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "Promise class for javascript",
   "keywords": ["promise", "async", "callback", "chaining", "then", "join"],
   "main": "index.js",
