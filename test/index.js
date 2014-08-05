@@ -62,6 +62,10 @@ function testSeries() {
             return myTimeout(1000);
         },
         function() {
+            console.log("No asynchronous calls");
+            return "XX";
+        },
+        function() {
             return myTimeout(3000);
         }
     ]).then(function(result){

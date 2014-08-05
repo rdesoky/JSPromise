@@ -98,7 +98,7 @@ CPromise.as = function(val){
 };
 
 CPromise.is = function(val){
-    return (val.constructor == CPromise);
+    return( val && (val.constructor == CPromise) );
 };
 
 CPromise.join = function(list){
@@ -137,16 +137,22 @@ CPromise.series = function(fncList, options){
             return;
         }
         var process = fncList[ndx];
-        process(options).done(
-            function(results){
-                ret_vals.success[ndx] = results;
-                runProcess(ndx+1,results);
-            },
-            function(err){
-                ret_vals.errors[ndx] = err;
-                ret.reject(ret_vals);
-            }
-        )
+        var prVal = process(options);
+        if(CPromise.is(prVal)){
+            prVal.done(
+                function(results){
+                    ret_vals.success[ndx] = results;
+                    runProcess(ndx+1,results);
+                },
+                function(err){
+                    ret_vals.errors[ndx] = err;
+                    ret.reject(ret_vals);
+                }
+            );
+        }else{
+            ret_vals.success[ndx] = prVal;
+            runProcess(ndx+1,prVal);
+        }
     })(0,options);
 
     return ret;
