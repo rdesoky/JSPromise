@@ -97,6 +97,10 @@ CPromise.as = function(val){
     return (new CPromise()).fulfill(val);
 };
 
+CPromise.is = function(val){
+    return (val.constructor == CPromise);
+};
+
 CPromise.join = function(list){
     var ret = new CPromise();
     var doneCount = 0;
