@@ -1,4 +1,4 @@
-JSPromise
+Promise
 =========
 Require about 150 lines of javascript code to utilize Promise class for implementing asynchronous processes with chaining, series and joining capabilities.
 
@@ -15,10 +15,10 @@ package.json
 Sample usage
 ------------
 ``` Javascript
-var JSPromise = require("js-promise");
+var Promise = require("js-promise");
 
 function myTimeout(ms, logMsg){
-    return new JSPromise(function(onSuccess, onError){
+    return new Promise(function(onSuccess, onError){
         setTimeout(function(){
                 console.info(logMsg || ("-- Timeout ended on: " + (new Date()).toISOString()));
                 onSuccess(ms);
@@ -56,18 +56,18 @@ myTimeout(1000)
 
 function testJoin() {
     console.log("Waiting for 3 joined promises to finishes in (2|1|5)=5 seconds on:" + (new Date()).toISOString());
-    return JSPromise.join([
+    return Promise.join([
         myTimeout(2000),
         myTimeout(1000),
         myTimeout(5000),
     ]).then(function(){
-        console.log("Done JSPromise.join on: " + (new Date()).toISOString());
+        console.log("Done Promise.join on: " + (new Date()).toISOString());
     })
 }
 
 function testSeries() {
     console.log("Testing a series of 3 timeouts (2+1+3) seconds total 6 ");
-    return JSPromise.series([
+    return Promise.series([
         function() {
             return myTimeout(2000);
         },
@@ -78,8 +78,8 @@ function testSeries() {
             return myTimeout(3000);
         }
     ]).then(function(result){
-        console.log("JSPromise.series result = " + JSON.stringify(result));
-        console.log("Done JSPromise.series on " + (new Date()).toISOString());
+        console.log("Promise.series result = " + JSON.stringify(result));
+        console.log("Done Promise.series on " + (new Date()).toISOString());
     })
 }
 

@@ -11,11 +11,13 @@ function CPromise( init ) {
     };
     var noSuccessHandler = function(result){
         console.error( "Missing Promise Success Handler." + ( (result !== undefined ) ? " result=" + JSON.stringify(result) : "" ) );
+        return result;
     };
     var noErrorHandler = function(err){
         console.error( "Missing Promise Error Handler." + ( (err !== undefined ) ? " error=" + JSON.stringify(err) : "" ) );
+        return result;
     };
-    var inst = {
+    var promise = {
         _callbacklist: [],
         _state: states.pending, //0: pending, 1:success, 2: failed, 3: cancelled
 
@@ -85,11 +87,11 @@ function CPromise( init ) {
     };
 
     // extend this object
-    for (var k in inst) {
-        this[k] = inst[k];
+    for (var k in promise) {
+        this[k] = promise[k];
     }
 
-    ( init && init(inst.fulfill.bind(this),inst.reject.bind(this)) );
+    ( init && init(promise.fulfill.bind(this),promise.reject.bind(this)) );
 
 }
 
