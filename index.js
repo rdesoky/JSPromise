@@ -10,11 +10,11 @@ function CPromise( init ) {
         cancelled: 3
     };
     var noSuccessHandler = function(result){
-        console.error( "Missing Promise Success Handler." + ( (result !== undefined ) ? " result=" + JSON.stringify(result) : "" ) );
+        console.error( "Default js-promise Success Handler." + ( (result !== undefined ) ? " result=" + JSON.stringify(result) : "" ) );
         return result;
     };
     var noErrorHandler = function(err){
-        console.error( "Missing Promise Error Handler." + ( (err !== undefined ) ? " error=" + JSON.stringify(err) : "" ) );
+        console.error( "Default js-promise Error Handler." + ( (err !== undefined ) ? " error=" + JSON.stringify(err) : "" ) );
         return err;
     };
     var promise = {
