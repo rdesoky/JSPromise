@@ -15,7 +15,7 @@ function CPromise( init ) {
     };
     var noErrorHandler = function(err){
         console.error( "Missing Promise Error Handler." + ( (err !== undefined ) ? " error=" + JSON.stringify(err) : "" ) );
-        return result;
+        return err;
     };
     var promise = {
         _callbacklist: [],
