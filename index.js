@@ -160,4 +160,12 @@ CPromise.series = function(fncList, options){
     return ret;
 };
 
-module.exports = CPromise;
+if(typeof module !== "undefined") {//CommonJS
+	module.exports = CPromise;
+}
+
+if(typeof define === "function" && define.amd ){//AMD RequireJS
+	define("js-promise",function(){
+		return CPromise;
+	});
+}
