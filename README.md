@@ -1,6 +1,9 @@
 Promise
 =========
-Require about 150 lines of javascript code to utilize Promise class for implementing asynchronous processes with chaining, series and joining capabilities.
+Require about 150 lines of javascript code to utilize Promise class for implementing asynchronous processes with chaining,
+series and joining capabilities.
+
+js-promise supports AMD loaders.
 
 package.json
 ------------
