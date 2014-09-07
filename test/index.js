@@ -2,10 +2,10 @@
  * Created by rdeso_000 on 6/14/2014.
  */
 
-var JSPromise = require("../index.js");//default to index.js
+var JSPromise = require("../js-promise.js");
 
 function myTimeout(ms, logMsg){
-    return new JSPromise(function(onSuccess, onError){
+	return new JSPromise(function(onSuccess, onError){
         setTimeout(function(){
                 console.info(logMsg || ("-- Timeout ended on: " + (new Date()).toISOString()));
                 onSuccess(ms);
@@ -46,7 +46,7 @@ function testJoin() {
     return JSPromise.join([
         myTimeout(2000),
         myTimeout(1000),
-        myTimeout(5000),
+        myTimeout(5000)
     ]).then(function(){
         console.log("Done JSPromise.join on: " + (new Date()).toISOString());
     })
