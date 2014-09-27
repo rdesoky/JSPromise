@@ -117,9 +117,15 @@
 			}
 		};
 
-		list.forEach(function(pr){
-			pr.done(doneHandler, doneHandler);
-		});
+		if(list && list.length) {
+			list.forEach(function (pr) {
+				pr.done(doneHandler, doneHandler);
+			});
+		}else{
+			setTimeout(function(){
+				ret.resolve();
+			},1);
+		}
 
 		return ret;
 	};

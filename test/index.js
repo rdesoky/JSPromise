@@ -24,23 +24,31 @@ myTimeout(1000)
         console.log("Done " + delay + " ms!");
         return myTimeout(2000);
     }
-).then(function(delay){
+)
+.then(function(delay){
         console.log("Done " + delay + " ms!");
         return myTimeout(3000);
     }
-).then(function(delay){
+)
+.then(function(delay){
         console.log("Done " + delay + " ms!");
         return testJoin();
     }
-).then(function(){
-        return testSeries();
-    }
-).done(function(){
+)
+.then(testEmptyJoin)
+.then(testSeries)
+.done(function(){
         var totalSeconds = ( Date.now() - startTime ) / 1000;
         console.log("Test Passed! in " + totalSeconds + " Seconds, expected: 17");
     }
 );
 
+function testEmptyJoin() {
+	console.log("Waiting for 3 joined promises to finishes in (2|1|5)=5 seconds on:" + (new Date()).toISOString());
+	return JSPromise.join([]).then(function(){
+		console.log("Done JSPromise.join empty list on: " + (new Date()).toISOString());
+	});
+}
 function testJoin() {
     console.log("Waiting for 3 joined promises to finishes in (2|1|5)=5 seconds on:" + (new Date()).toISOString());
     return JSPromise.join([
