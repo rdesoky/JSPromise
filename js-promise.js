@@ -187,11 +187,12 @@
 	if(typeof module !== "undefined") {//CommonJS
 		module.exports = CPromise;
 	}
-
-	if(typeof define === "function" && define.amd ){//AMD RequireJS
+	else if(typeof define === "function" && define.amd ){//AMD RequireJS
 		define("js-promise",function(){
 			return CPromise;
 		});
+	}else if(typeof window !== "undefined"){
+		window.CPromise = CPromise;
 	}
 
 })();
