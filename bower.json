@@ -1,0 +1,31 @@
+{
+  "name": "js-promise",
+  "main": "js-promise.js",
+  "version": "0.3.2",
+  "homepage": "https://github.com/rdesoky/JsPromise",
+  "authors": [
+    "Ramy Eldesoky <rdesoky@gmail.com>"
+  ],
+  "description": "Promise class for javascript",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "promise",
+    "async",
+    "callback",
+    "chaining",
+    "then",
+    "join",
+    "seies",
+    "race"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
